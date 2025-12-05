@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>로그인 화면 실습</title>
+        <style>
+            @font-face {
+                font-family: 'SpokaHanSansNeo';
+                src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Regular.woff') format('woff');
+                font-weight: 400;
+                font-display: swap;
+            }
+
+            @font-face {
+                font-family: 'SpokaHanSansNeo';
+                src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Medium.woff') format('woff');
+                font-weight: 500;
+                font-display: swap;
+            }
+
+            @font-face {
+                font-family: 'SpokaHanSansNeo';
+                src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/SpoqaHanSansNeo-Bold.woff') format('woff');
+                font-weight: 700;
+                font-display: swap;
+            }
+
+            * {
+                box-sizing: border-box;
+                margin: 0;
+                padding: 0;
+            }
+
+            body {
+                font-family: "SpokaHanSansNeo", system-ui;
+            }
+
+            .model {
+                width: 520px;
+                height: 712px;
+                background-color: #FFFFFF;
+                border: solid 1px #C4C4C4;
+                border-radius: 10px;
+                margin: 50px auto;
+                position: relative;
+                overflow: hidden;
+            }
+
+            .model h2 {
+                width: 144px;
+                height: 20px;
+                font-size: 16px;
+                font-weight: 500;
+                position: absolute;
+                top: 20px;
+                left: 188px;
+            }
+
+            .close {
+                width: 16px;
+                height: 16px;
+                position: absolute;
+                top: 22px;
+                right: 24px;
+                cursor: pointer;
+            }
+
+            .model .line1 {
+                width: 520px;
+                height: 1px;
+                background-color: #C4C4C4;
+                position: absolute;
+                top: 58px;
+            }
+
+            .phr {
+                width: 369px;
+                height: 24px;
+                font-size: 20px;
+                color: #000000;
+                position: absolute;
+                top: 85px;
+                left: 24px;
+            }
+
+            .model input {
+                width: 472px;
+                height: 50px;
+                border: solid 1px #C4C4C4;
+                border-radius: 5px;
+                position: absolute;
+                left: 24px;
+            }
+
+            .id {
+                top: 133px;
+            }
+
+            .pw {
+                top: 193px;
+            }
+
+            ::placeholder {
+                font-size: 16px;
+                font-weight: 400;
+                color: #767676;
+            }
+
+            label {
+                position: absolute;
+                top: 259px;
+                left: 28px;
+            }
+
+            .state-check-input {
+                display: none;
+            }
+
+            .state-check-input + .icon {
+                display: inline-block;
+                width: 22px;
+                height: 22px;
+                border: none;
+                background: url("./images/check-box.png") no-repeat center / cover;
+            }
+
+            .state-check-input:checked + .icon {
+                background: url("./images/check-box-fill.png") no-repeat center / cover;
+            }
+
+            .state {
+                width: 111px;
+                height: 20px;
+                font-size: 16px;
+                font-weight: 500;
+                color: #767676;
+                position: absolute;
+                left: 30px;
+            }
+
+            .login {
+                width: 472px;
+                height: 50px;
+                border: none;
+                border-radius: 5px;
+                background-color: #2F80ED;
+                color: #FFFFFF;
+                font-size: 18px;
+                font-weight: 700;
+                position: absolute;
+                top: 301px;
+                left: 24px;
+            }
+
+            .group2 {
+                width: 205px;
+                height: 18px;
+                color: #767676;
+                font-size: 14px;
+                font-weight: 400;
+                position: absolute;
+                top: 371px;
+                left: 158px;
+                display: flex;
+                gap: 12px;
+            }
+
+            .join,
+            .search {
+                cursor: pointer;
+            }
+
+            .OR-line {
+                width: 472px;
+                height: 18px;
+                position: absolute;
+                top: 418px;
+                left: 24px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 13px;
+            }
+
+            .OR-line .line2 {
+                width: 210px;
+                height: 1px;
+                background-color: #C4C4C4;
+            }
+
+            .OR-line span {
+                width: 26px;
+                height: 18px;
+                font-size: 14px;
+                font-weight: 400;
+                color: #767676;
+            }
+
+            button {
+                width: 472px;
+                height: 50px;
+                background-color: #FFFFFF;
+                border-radius: 5px;
+                position: absolute;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                left: 24px;
+            }
+
+            button p {
+                color: #767676;
+                font-size: 16px;
+                font-weight: 500;
+                width: fit-content;
+            }
+
+            button img {
+                width: 28px;
+                height: 28px;
+                position: absolute;
+                top: 11px;
+                left: 12px;
+            }
+
+            .sns-login-google {
+                border: solid 1px #767676;
+                top: 457px
+            }
+
+            .sns-login-Fb {
+                border: solid 1px #2D9CDB;
+                top: 517px;
+            }
+
+            .sns-login-NV {
+                border: solid 1px #00BF18;
+                top: 577px;
+            }
+
+            .sns-login-kakao {
+                border: solid 1px #F2C94C;
+                top: 637px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="model">
+            <h2>로그인 또는 회원가입</h2>
+            <img class="close" src="./images/close.png" alt="닫기 버튼">
+            <div class="line1"></div>
+            <p class="phr">위니브에서 여러분의 궁금증을 해결하세요! :</p>
+            <input class="id" type="id" placeholder="  아이디" />
+            <input class="pw" type="password" placeholder="  비밀번호" />
+            <label for="state-check">
+                <input type="checkbox" name="state-check" id="state-check" class="state-check-input" />
+                <span class="icon"></span>
+                <span class="state">로그인 상태 유지</span>
+            </label>
+            <button class="login">로그인</button>
+            <div class="group2">
+                <span class="join">회원가입</span>
+                <span>|</span>
+                <span class="search">아이디/비밀번호 찾기</span>
+            </div>
+            <div class="OR-line">
+                <div class="line2"></div>
+                <span>또는</span>
+                <div class="line2"></div>
+            </div>
+            <button class="sns-login-google">
+                <img src="./images/Google__G__Logo 1.png" alt="구글 로고">
+                <p>구글 계정으로 로그인</p>
+            </button>
+            <button class="sns-login-Fb">
+                <img src="./images/facebook.png" alt="페이스북 로고">
+                <p>페이스북 계정으로 로그인</p>
+            </button>
+            <button class="sns-login-NV">
+                <img src="./images/naver-logo.png" alt="네이버 로고">
+                <p>네이버 계정으로 로그인</p>
+            </button>
+            <button class="sns-login-kakao">
+                <img src="./images/message-circle.png" alt="카카오 로고">
+                <p>카카오 계정으로 로그인</p>
+            </button>
+        </div>
+    </body>
+</html>
